@@ -1,0 +1,139 @@
+<!DOCTYPE html >
+<html lang="en"
+      ng-app="coalElectricity" >
+<head >
+	<title>Methane energy</title >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link href="main.css" rel="stylesheet" >
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.7/angular-css.js" rel="stylesheet" >
+	<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+	
+</head >
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" >
+	<div class="container" >
+		<div class="navbar-header" >
+			<a class="navbar-brand">Coal Electricity
+			</a >
+		</div >
+	</div >
+</nav >
+<br>
+		<div class="col-md-4" style="float:left"
+		     ng-controller="LocationListController" >
+
+					<table class="table table-bordered" >
+
+						<tr >
+							<th>Click on Location to load place specific FRQ
+							</th >
+						</tr >
+
+						<tr ng-repeat="location in filteredLocations = (info.locations | orderBy:order)"
+						    ng-style="{'background-color': location.place == info.selectedLocation.place ? '#a8a8a8' : 'white'}"
+						    ng-click="info.selectedLocation = location" >
+							<td >{{ location.place }}</td >
+						</tr >
+
+					</table >
+
+				</div >
+
+		</div >
+		<div class="col-md-8" style="float:right">
+
+			<div ng-controller="LocationDetailController" class="panel panel-default">
+				<div class="panel-heading" >FRQ for ... {{ info.selectedLocation.place }}</div >
+				<div class="panel-body" >
+     		
+						<p >A large, coal-fired electric power plant in <strong>{{ info.selectedLocation.place }}</strong> produces <strong>{{ info.selectedLocation.coalplantcapacity }}</strong> kWh of electricity each day in this new, high efficiency power plant.  Assume that an input of <strong>{{ info.selectedLocation.btusin }}</strong> BTUs of heat is required to produce an output of <strong>1.0</strong> kWh of electricity.</p>
+						
+						<br>
+						
+						<p>Showing all steps in your claculations, determine the number of:</p>
+					
+						<br>
+					
+						<p>BTUs of heat needed to generate the electricity produced by the power plant each day.</p >
+						
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-animate="'animate'" ng-show="showMe" mathjax-bind="info.selectedLocation.questionone"></span>
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+    				    
+    				    
+    				    
+    				<br></br>
+					
+						<p>Pounds of coal consumed by the power plant each day, assuming that one pound of coal yields <strong>{{ info.selectedLocation.poundcoalbtus }}</strong> BTUs.</p >
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-show="showMe" ng-animate="'animate'" mathjax-bind="info.selectedLocation.questiontwo"></span>
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+    				    <br></br>
+					
+						<p>Pounds of sulfur released by the power plant each day, assuming that the coal contains one percent sulfur by weight.</p >
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-show="showMe" ng-animate="'animate'" mathjax-bind="info.selectedLocation.questionthree"></span>
+    							
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+    				    <br></br>
+					
+						<p>The EPA standard for coal-fired power plants such as this one is that no more than <strong>1.2</strong> pounds of sulfur be emitted per <strong>1.0</strong> million BTUs of heat generated. Using the results in part (a), determine whether the power plant meets the EPA standard.</p >
+						
+						<div ng-controller="MyCtrl"><!--http://www.w3schools.com/angular/tryit.asp?filename=try_ng_events_toggle-->
+							<button class="btn" ng-click="myFunc()">Click to Show and Hide!</button>
+						
+							<br></br>
+					
+							<div>
+    							<span ng-show="showMe" ng-animate="'animate'" mathjax-bind="info.selectedLocation.questionfour"></span>
+    							
+							</div> <!--http://jsfiddle.net/spicyj/ypqvp/-->
+						
+    				    </div>
+    				    
+			</div >
+		</div >
+</div >
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js" ></script>
+<script src="main.js" ></script>
+
+</body>
+<!--<div id="footer">
+<p class="end" style="font-size:small; color:dark gray; text-align:center;">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">APES Practice for Energy Math</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.connectedtoscience.org" property="cc:attributionName" rel="cc:attributionURL">Jenny Hoffman</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+<br/>
+This software incorporates Angular JS, Bootstrap CSS and the MathJax TEX and CSS libraries.
+Google API.</p>
+</div>-->
+</html >
+
